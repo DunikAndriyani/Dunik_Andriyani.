@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Novel extends Model
 {
-    const CREATED_AT = 'created';
-    const UPDATED_AT = 'updated';
     protected $table = 'novel';
+    public $timestamps = false;
+
     protected $fillable = [
         'judul',
         'genre',
-        'penulis'
+        'penulis',
+        'kategori_novel_id',
     ];
+
+     public function kategori()
+    {
+        return $this->belongsTo(KategoriNovel::class, 'kategori_novel_id');
+    }
 }
