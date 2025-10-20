@@ -22,7 +22,7 @@ class UserController extends Controller
 
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/home'); // ✅ arahkan ke halaman utama
+            return redirect()->intended('/'); // ✅ arahkan ke halaman utama
         }
 
         return back()->withErrors([
@@ -41,7 +41,7 @@ class UserController extends Controller
         $validated['password'] = bcrypt($validated['password']);
 
         User::create($validated);
-        return redirect('/home')->with('success', 'Registrasi berhasil!');
+        return redirect('/')->with('success', 'Registrasi berhasil!');
     }
 
     public function logout(Request $request) {
